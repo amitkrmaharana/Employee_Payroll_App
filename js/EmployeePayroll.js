@@ -5,10 +5,10 @@ class EmployeePayrollData {
 
     get name() { return this._name; }
     set name(name) {
-        let nameRegex = RegExp('^[A-Z]{1}[a-zA-Z\s]{2,}$');
+        let nameRegex = RegExp('^[A-Z]{1}[a-zA-Z\\s]{2,}$');
         if (nameRegex.test(name))
             this._name = name;
-        else throw 'Name is Incorrect!';
+        else throw 'Invalid Name';
     }
 
     get profilePic() { return this._profilePic; }
@@ -27,8 +27,13 @@ class EmployeePayrollData {
     set note(note) { this._note = note; }
 
     get startDate() { return this._startDate; }
-    set startDate(startDate) { this._startDate = startDate; }
-
+    set startDate(startDate) {
+        let datePassed = new Date(startDate);
+        let currentDate = new Date();
+        if (currentDate > datePassed) {
+            this._startDate = startDate;
+        } else throw 'Start Date is Future Date!'
+    }
     toString() {
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         const empDate = !this.startDate ? "undefined" : this.startDate.toLocaleDateString("en-US", options);
