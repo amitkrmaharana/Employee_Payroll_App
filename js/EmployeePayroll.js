@@ -27,13 +27,8 @@ class EmployeePayrollData {
     set note(note) { this._note = note; }
 
     get startDate() { return this._startDate; }
-    set startDate(startDate) {
-        let datePassed = new Date(startDate);
-        let currentDate = new Date();
-        if (currentDate > datePassed) {
-            this._startDate = startDate;
-        } else throw 'Start Date is Future Date!'
-    }
+    set startDate(startDate) { this._startDate = startDate; }
+
     toString() {
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         const empDate = !this.startDate ? "undefined" : this.startDate.toLocaleDateString("en-US", options);
