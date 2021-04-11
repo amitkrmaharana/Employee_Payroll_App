@@ -4,7 +4,12 @@ class EmployeePayrollData {
     set id(id) { this._id = id; }
 
     get name() { return this._name; }
-    set name(name) { this._name = name; }
+    set name(name) {
+        let nameRegex = RegExp('^[A-Z]{1}[a-zA-Z\s]{2,}$');
+        if (nameRegex.test(name))
+            this._name = name;
+        else throw 'Name is Incorrect!';
+    }
 
     get profilePic() { return this._profilePic; }
     set profilePic(profilePic) { this._profilePic = profilePic; }
@@ -22,9 +27,14 @@ class EmployeePayrollData {
     set note(note) { this._note = note; }
 
     get startDate() { return this._startDate; }
-    set startDate(salstartDateary) { this._startDate = startDate; }
+    set startDate(startDate) { this._startDate = startDate; }
 
     toString() {
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        const empDate = !this.startDate ? "undefined" : this.startDate.toLocaleDateString("en-US", options);
 
+        return "id=" + this.id + ", name=" + this.name + ", gender=" + this.gender +
+            ", profilePic=" + this.profilePic + ", department=" + this.department +
+            ", salary=" + this.salary + ", startDate=" + empDate + ", note=" + this.note;
     }
 }
