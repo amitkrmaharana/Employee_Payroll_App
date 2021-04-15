@@ -40,7 +40,7 @@ const createEmployeePayroll = () => {
         setTextValue('.text-error', e);
         throw e;
     }
-
+    employeePayrollData.id = localStorage.getItem("EmployeePayrollList").length;
     employeePayrollData.profilePic = getSelectedValues("[name=profile]").pop();
     employeePayrollData.gender = getSelectedValues("[name=gender]").pop();
     employeePayrollData.department = getSelectedValues("[name=department]");
