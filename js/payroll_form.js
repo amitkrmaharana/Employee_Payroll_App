@@ -30,7 +30,7 @@ const save = () => {
     } catch (e) {
         return;
     }
-}
+};
 
 const createEmployeePayroll = () => {
     let employeePayrollData = new EmployeePayrollData();
@@ -52,7 +52,7 @@ const createEmployeePayroll = () => {
         getInputValueById("#month") +
         " " +
         getInputValueById("#year");
-    employeePayrollData.date = Date.parse(date);
+    employeePayrollData.startDate = date;
     alert(employeePayrollData.toString());
     return employeePayrollData;
 };
@@ -76,7 +76,7 @@ function createAndUpdateStorage(employeePayrollData) {
     if (employeePayrollList != undefined) {
         employeePayrollList.push(employeePayrollData);
     } else {
-        employeePayrollList = [employeePayrollData]
+        employeePayrollList = [employeePayrollData];
     }
     alert(employeePayrollList.toString());
     localStorage.setItem("EmployeePayrollList", JSON.stringify(employeePayrollList))
